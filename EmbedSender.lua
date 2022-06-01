@@ -1,14 +1,14 @@
-local RoBed = {};
-RoBed.__index = RoBed
+local MessageEmbed = {};
+MessageEmbed.__index = MessageEmbed
 
-function RoBed.new()
+function MessageEmbed.new()
 	return setmetatable({
 		Settings = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = {}},
 		Embed = {}
-	}, RoBed)
+	}, MessageEmbed)
 end
 
-function RoBed:MakeEmbed()
+function MessageEmbed:MakeEmbed()
 	local Settings = self.Settings
 	self.Embed = {
 		['embeds'] = {{
@@ -21,28 +21,28 @@ function RoBed:MakeEmbed()
 	}
 end
 
-function RoBed:SetColor(Color)
+function MessageEmbed:SetColor(Color)
 	self.Settings.Color = Color
 	return self
 end
 
-function RoBed:SetDescription(Description)
+function MessageEmbed:SetDescription(Description)
 	self.Settings.Description = Description
 	return self
 end
 
-function RoBed:SetTitle(Title)
+function MessageEmbed:SetTitle(Title)
 	self.Settings.Title = Title
 	return self
 end
 
-function RoBed:AddFields(Name, Value, InLine)
+function MessageEmbed:AddFields(Name, Value, InLine)
 	local FieldData = {['name'] = Name, ['value'] = Value, ['inline'] = InLine}
 	table.insert(self.Settings.Fields, FieldData)
 	return self
 end
 
-function RoBed:Finish(WebHookURL)
+function MessageEmbed:Finish(WebHookURL)
 	syn.request({
 		Url = WebHookURL,
 		Method = 'POST',
@@ -53,4 +53,4 @@ function RoBed:Finish(WebHookURL)
 	})
 end
 
-return RoBed
+return MessageEmbed
