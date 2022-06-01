@@ -1,6 +1,8 @@
 local MessageEmbed = {};
 MessageEmbed.__index = MessageEmbed
 
+local Insert = table.insert
+
 function MessageEmbed.new()
 	local self = setmetatable(
 		{
@@ -16,7 +18,7 @@ function MessageEmbed.new()
 			['description'] = self.config.Description,
 			['color'] = tonumber(self.config.Color),
 			['type'] = 'rich',
-			['fields'] = self.config.Fields
+			['fields'] = self.config.Fields,
 		}}
 	}
 
@@ -38,9 +40,16 @@ function MessageEmbed:SetTitle(Title)
 	return self
 end
 
+function MessageEmbed:AddField(Fields)
+	for I = 1, #Fields do
+        Insert(self.config.Fields, Fields[I])
+    end
+	return self
+end
+
 function MessageEmbed:AddFields(Name, Value, InLine)
 	local FieldData = {['name'] = Name, ['value'] = Value, ['inline'] = InLine}
-	table.insert(self.config.Fields, FieldData)
+	Insert(self.config.Fields, FieldData)
 	return self
 end
 
@@ -54,5 +63,3 @@ function MessageEmbed:Send(Url)
 		Body = game:GetService('HttpService'):JSONEncode(self.EmbedData)
 	})
 end
-
-return MessageEmbed
