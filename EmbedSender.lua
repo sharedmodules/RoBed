@@ -9,19 +9,24 @@ function RoBed.new()
 end
 
 function RoBed:MakeEmbed()
+	local Settings = self.Settings
 	self.Embed = {
 		['embeds'] = {{
-			['title'] = self.Settings.Title,
-			['description'] = self.Settings.Description,
-			['color'] = tonumber(self.Settings.Color),
+			['title'] = Settings.Title,
+			['description'] = Settings.Description,
+			['color'] = tonumber(Settings.Color),
 			['type'] = 'rich',
-			['fields'] = self.Settings.Fields
+			['fields'] = Settings.Fields
 		}}
 	}
 end
 
 function RoBed:SetColor(Color)
 	self.Settings.Color = Color
+end
+
+function RoBed:SetDescription(Description)
+	self.Settings.Description = Description
 end
 
 function RoBed:SetTitle(Title)
