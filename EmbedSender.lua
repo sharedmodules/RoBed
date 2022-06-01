@@ -4,7 +4,7 @@ MessageEmbed.__index = MessageEmbed
 function MessageEmbed.new()
 	local self = setmetatable(
 		{
-			Settings = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = {}},
+			config = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = {}},
 			EmbedData = {},
 		},
 		MessageEmbed
@@ -12,11 +12,11 @@ function MessageEmbed.new()
 
 	self.EmbedData = {
 		['embeds'] = {{
-			['title'] = self.Settings.Title,
-			['description'] = self.Settings.Description,
-			['color'] = tonumber(self.Settings.Color),
+			['title'] = self.config.Title,
+			['description'] = self.config.Description,
+			['color'] = tonumber(self.config.Color),
 			['type'] = 'rich',
-			['fields'] = self.Settings.Fields
+			['fields'] = self.config.Fields
 		}}
 	}
 
@@ -24,23 +24,23 @@ function MessageEmbed.new()
 end
 
 function MessageEmbed:SetColor(Color)
-	self.Settings.Color = Color
+	self.config.Color = Color
 	return self
 end
 
 function MessageEmbed:SetDescription(Description)
-	self.Settings.Description = Description
+	self.config.Description = Description
 	return self
 end
 
 function MessageEmbed:SetTitle(Title)
-	self.Settings.Title = Title
+	self.config.Title = Title
 	return self
 end
 
 function MessageEmbed:AddFields(Name, Value, InLine)
 	local FieldData = {['name'] = Name, ['value'] = Value, ['inline'] = InLine}
-	table.insert(self.Settings.Fields, FieldData)
+	table.insert(self.config.Fields, FieldData)
 	return self
 end
 
