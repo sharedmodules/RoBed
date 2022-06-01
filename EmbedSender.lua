@@ -2,8 +2,15 @@ local MessageEmbed = {};
 MessageEmbed.__index = MessageEmbed
 
 function MessageEmbed.new()
-	local self = setmetatable({Settings = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = {}}, Embed = {}}, MessageEmbed)
-	self.Embed = {
+	local self = setmetatable(
+		{
+			Settings = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = {}},
+			EmbedData = {},
+		},
+		MessageEmbed
+	)
+
+	self.EmbedData = {
 		['embeds'] = {{
 			['title'] = self.Settings.Title,
 			['description'] = self.Settings.Description,
@@ -12,6 +19,7 @@ function MessageEmbed.new()
 			['fields'] = self.Settings.Fields
 		}}
 	}
+
 	return self
 end
 
@@ -43,7 +51,7 @@ function MessageEmbed:Send(Url)
 		Headers = {
 			['Content-Type'] = 'application/json'
 		},
-		Body = game:GetService('HttpService'):JSONEncode(self.Embed)
+		Body = game:GetService('HttpService'):JSONEncode(self.EmbedData)
 	})
 end
 
