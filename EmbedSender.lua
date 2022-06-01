@@ -6,7 +6,7 @@ local Insert = table.insert
 function MessageEmbed.new()
 	local self = setmetatable(
 		{
-			config = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = {}},
+			config = {Color = '0xFFFFF', Title = 'NULL', Description = 'NULL', Fields = {}},
 			EmbedData = {},
 		},
 		MessageEmbed
