@@ -47,8 +47,11 @@ function MessageEmbed:AddField(Fields)
 end
 
 function MessageEmbed:AddFields(Name, Value, InLine)
-	local FieldData = {['name'] = Name, ['value'] = Value, ['inline'] = InLine}
-	Insert(self.config.Fields, FieldData)
+	Insert(self.config.Fields, {
+		['name'] = Name, 
+		['value'] = Value, 
+		['inline'] = InLine
+	})
 	return self
 end
 
