@@ -63,6 +63,4 @@ function MessageEmbed:Send(Url)
 	})
 end
 
-local test = MessageEmbed.new()
-test:AddFields('2', '1', true)
-test:Send()
+return MessageEmbed
