@@ -40,14 +40,14 @@ function MessageEmbed:SetTitle(Title)
 	return self
 end
 
-function MessageEmbed:AddField(Fields)
+function MessageEmbed:AddFields(Fields)
 	for I = 1, #Fields do
         Insert(self.config.Fields, Fields[I])
     end
 	return self
 end
 
-function MessageEmbed:AddFields(Name, Value, InLine)
+function MessageEmbed:AddField(Name, Value, InLine)
 	local FieldData = {['name'] = Name, ['value'] = Value, ['inline'] = InLine}
 	Insert(self.config.Fields, FieldData)
 	return self
