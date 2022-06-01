@@ -3,12 +3,7 @@ RoBed.__index = RoBed
 
 function RoBed.new()
 	return setmetatable({
-		Settings = {
-			Color = '0xFFFFF',
-			Title = 'nothing',
-			Description = 'Nothing',
-			Fields = nil
-		},
+		Settings = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = nil},
 		Embed = {}
 	}, RoBed)
 end
