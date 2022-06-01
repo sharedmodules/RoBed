@@ -3,7 +3,7 @@ RoBed.__index = RoBed
 
 function RoBed.new()
 	return setmetatable({
-		Settings = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = nil},
+		Settings = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = {}},
 		Embed = {}
 	}, RoBed)
 end
@@ -23,21 +23,26 @@ end
 
 function RoBed:SetColor(Color)
 	self.Settings.Color = Color
+	return self
 end
 
 function RoBed:SetDescription(Description)
 	self.Settings.Description = Description
+	return self
 end
 
 function RoBed:SetTitle(Title)
 	self.Settings.Title = Title
+	return self
 end
 
-function RoBed:AddField(Fields)
-	self.Settings.Fields = {Fields}
+function RoBed:AddFields(Name, Value, InLine)
+	local FieldData = {['name'] = Name, ['value'] = Value, ['inline'] = InLine}
+	table.insert(self.Settings.Fields, FieldData)
+	return self
 end
 
-function RoBed:SendTo(WebHookURL)
+function RoBed:Finish(WebHookURL)
 	syn.request({
 		Url = WebHookURL,
 		Method = 'POST',
