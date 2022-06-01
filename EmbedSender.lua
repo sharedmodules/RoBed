@@ -6,8 +6,7 @@ local Insert = table.insert
 function MessageEmbed.new()
 	local self = setmetatable(
 		{
-			config = {Color = '0xFFFFF', Title = 'NULL', Description = 'NULL', Fields = {}},
-			EmbedData = {},
+			config = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = {}},
 		},
 		MessageEmbed
 	)
@@ -40,14 +39,14 @@ function MessageEmbed:SetTitle(Title)
 	return self
 end
 
-function MessageEmbed:AddFields(Fields)
+function MessageEmbed:AddField(Fields)
 	for I = 1, #Fields do
         Insert(self.config.Fields, Fields[I])
     end
 	return self
 end
 
-function MessageEmbed:AddField(Name, Value, InLine)
+function MessageEmbed:AddFields(Name, Value, InLine)
 	local FieldData = {['name'] = Name, ['value'] = Value, ['inline'] = InLine}
 	Insert(self.config.Fields, FieldData)
 	return self
@@ -64,4 +63,6 @@ function MessageEmbed:Send(Url)
 	})
 end
 
-return MessageEmbed
+local test = MessageEmbed.new()
+test:AddFields('2', '1', true)
+test:Send()
