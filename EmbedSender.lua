@@ -63,3 +63,5 @@ function MessageEmbed:Send(Url)
 		Body = game:GetService('HttpService'):JSONEncode(self.EmbedData)
 	})
 end
+
+return MessageEmbed
