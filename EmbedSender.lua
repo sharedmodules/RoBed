@@ -2,23 +2,17 @@ local MessageEmbed = {};
 MessageEmbed.__index = MessageEmbed
 
 function MessageEmbed.new()
-	return setmetatable({
-		Settings = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = {}},
-		Embed = {}
-	}, MessageEmbed)
-end
-
-function MessageEmbed:MakeEmbed()
-	local Settings = self.Settings
+	local self = setmetatable({Settings = {Color = '0xFFFFF', Title = 'nothing', Description = 'Nothing', Fields = {}}, Embed = {}}, MessageEmbed)
 	self.Embed = {
 		['embeds'] = {{
-			['title'] = Settings.Title,
-			['description'] = Settings.Description,
-			['color'] = tonumber(Settings.Color),
+			['title'] = self.Settings.Title,
+			['description'] = self.Settings.Description,
+			['color'] = tonumber(self.Settings.Color),
 			['type'] = 'rich',
-			['fields'] = Settings.Fields
+			['fields'] = self.Settings.Fields
 		}}
 	}
+	return self
 end
 
 function MessageEmbed:SetColor(Color)
@@ -42,9 +36,9 @@ function MessageEmbed:AddFields(Name, Value, InLine)
 	return self
 end
 
-function MessageEmbed:Finish(WebHookURL)
+function MessageEmbed:Send(Url)
 	syn.request({
-		Url = WebHookURL,
+		Url = Url,
 		Method = 'POST',
 		Headers = {
 			['Content-Type'] = 'application/json'
