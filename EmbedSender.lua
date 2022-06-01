@@ -20,16 +20,16 @@ function RoBed:MakeEmbed()
 	}
 end
 
-function RoBed:SetColor(NewColor)
-	self.Settings.Color = NewColor
+function RoBed:SetColor(Color)
+	self.Settings.Color = Color
 end
 
-function RoBed:SetTitle(NewTitle)
-	self.Settings.Title = NewTitle
+function RoBed:SetTitle(Title)
+	self.Settings.Title = Title
 end
 
-function RoBed:AddField(Information)
-	self.Settings.Fields = {Information}
+function RoBed:AddField(Fields)
+	self.Settings.Fields = {Fields}
 end
 
 function RoBed:SendTo(WebHookURL)
